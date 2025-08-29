@@ -33,12 +33,27 @@ Follow these steps carefully 👇
 ```bash
 git clone https://github.com/YourUsername/mini-whatsapp.git
 cd mini-whatsapp
+
+2️⃣ Install Node.js
+👉 Download from: https://nodejs.org/
+Check installation:
 node -v
 npm -v
+
+3️⃣ Install Dependencies
+Inside the project folder, run:
 npm install
+
+4️⃣ Setup MongoDB
+Option A (Local): Install MongoDB → Download here
+Start MongoDB by running:
 mongod
 mongodb://127.0.0.1:27017/whatsapp
+
+5️⃣ Start the Server
 node index.js
+
+6️⃣ Open in Browser
 http://localhost:3000
 
 
