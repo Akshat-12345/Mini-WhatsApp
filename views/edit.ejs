@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Chat</title>
+    <link rel="stylesheet" href="/edit.css">
+</head>
+<body>
+    <h1 id = "head">Mini Whatsapp</h1>
+    <h3>Edit Your Message Here :</h3>
+    <form method="POST" action="/chats/<%= detail._id %>?_method=PUT">
+        <h2 id="small" style="font-family: 'Segoe UI', sans-serif; font-weight: 500;">✉️ Message sent by <span style="color:#2e7d32;"><%= detail.from %></span>  to <span style="color:#1565c0;"><%= detail.to %></span>
+        </h2>
+
+        <br>
+        <br>
+        <textarea name="newMsg" placeholder="Write Your Message Here...."><%= detail.msg %></textarea>
+        <br>
+        <br>
+        <button>EDIT Chat</button>
+    </form>
+</body>
+</html>

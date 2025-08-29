@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Whatsapp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id = "head">Mini Whatsapp</h1>
+    <% for(let chat of chats){ %>
+        <div class="chat">
+            <p>From : <%= chat.from %></p>
+            <p>To : <%= chat.to %></p>
+            <p>Time : <%= chat.created_at.toString().split(" ")[4] %></p>
+            <p>Date : <%= chat.created_at.toString().split(" ").slice(0,4).join("-") %></p>
+            <div class="msg">
+                <p><%= chat.msg %></p>
+                
+            </div>
+            <div class="actions">
+                <form method="GET" action="/chats/<%= chat._id %>/edit">
+                    <button>EDIT </button>
+                </form>
+                <form method="POST" action="/chats/<%= chat._id %>?_method=DELETE">
+                    <button>DELETE</button>
+                </form>
+            </div>
+            
+        </div>
+    <% } %>
+    <br>
+    <form method="GET" action="chat/new">
+        <button>Create Chat</button>
+    </form>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <p>⚠️ Do you really want to delete this chat?</p>
+        <div class="modal-actions">
+          <button id="confirmYes">Yes</button>
+          <button id="confirmNo">No</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let deleteForm; // store current form reference
+
+      document.querySelectorAll(".actions form").forEach(form => {
+       if (form.action.includes("DELETE")) {
+         form.addEventListener("submit", function(e) {
+             e.preventDefault(); // stop immediate submit
+             deleteForm = this;
+             document.getElementById("deleteModal").style.display = "flex";
+         });
+       }
+      });
+
+      document.getElementById("confirmYes").onclick = function() {
+         deleteForm.submit(); // proceed with deletion
+      };
+
+      document.getElementById("confirmNo").onclick = function() {
+        document.getElementById("deleteModal").style.display = "none";
+      };
+</script>
+
+</body>
+</html>
